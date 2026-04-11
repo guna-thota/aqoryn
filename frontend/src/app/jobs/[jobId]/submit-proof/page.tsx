@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useRef } from "react";
-import { useWallet, useConnection } from "@solana/wallet-adapter-react";
+const useWallet = () => ({ publicKey: null });
 import toast from "react-hot-toast";
 import { Upload, Link, FileText, Github, Plus, Trash2 } from "lucide-react";
 import { uploadProofToIPFS, type ProofPackage, type ProofDeliverable } from "@/lib/ipfs";

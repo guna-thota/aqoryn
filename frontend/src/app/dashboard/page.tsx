@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { useWallet } from "@solana/wallet-adapter-react";
+const useWallet = () => ({ publicKey: null });
 import Link from "next/link";
 import { Clock, Shield, CheckCircle, AlertTriangle, Plus, ArrowRight } from "lucide-react";
 import type { Job } from "@/lib/constants";

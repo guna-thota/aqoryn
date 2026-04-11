@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { useWallet } from "@solana/wallet-adapter-react";
+const useWallet = () => ({ publicKey: null });
 import {
   Shield, Clock, Upload, CheckCircle, AlertTriangle,
   ExternalLink, Zap, ChevronDown, ChevronUp
