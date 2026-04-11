@@ -1,0 +1,12 @@
+/** @type {import('jest').Config} */
+module.exports = {
+  preset:              "ts-jest",
+  testEnvironment:     "node",
+  roots:               ["<rootDir>/tests"],
+  collectCoverageFrom: ["src/**/*.ts"],
+  coverageDirectory:   "coverage",
+  coverageThreshold: {
+    global: { lines: 60, functions: 60 },
+  },
+  testTimeout: 15000,
+};

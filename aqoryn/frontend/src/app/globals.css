@@ -1,0 +1,36 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    @apply bg-[#0a0a0f] text-white;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+
+  /* Solana wallet adapter overrides */
+  .wallet-adapter-button {
+    @apply !rounded-xl !font-medium !text-sm;
+  }
+
+  .wallet-adapter-modal-wrapper {
+    @apply !bg-[#1a1a2e] !border !border-white/10 !rounded-2xl;
+  }
+}
+
+@layer utilities {
+  .line-clamp-1 {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+  }
+
+  .bg-white\/8 {
+    background-color: rgba(255, 255, 255, 0.08);
+  }
+}

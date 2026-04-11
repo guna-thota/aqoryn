@@ -1,0 +1,23 @@
+[features]
+seeds = false
+skip-lint = false
+
+[programs.localnet]
+aqoryn_escrow      = "AqRnEsCR0wHeLk4youRFundSo1anaDevn3tTeSt00001"
+aqoryn_reputation  = "AqRnREP11UTat10nS0uLBoundT0k3nM1ntPr0gram002"
+aqoryn_arbitration = "AqRnARB1TRat10nDA0Jury5t4k3S1ash1ngPr0gram003"
+
+[programs.devnet]
+aqoryn_escrow      = "AqRnEsCR0wHeLk4youRFundSo1anaDevn3tTeSt00001"
+aqoryn_reputation  = "AqRnREP11UTat10nS0uLBoundT0k3nM1ntPr0gram002"
+aqoryn_arbitration = "AqRnARB1TRat10nDA0Jury5t4k3S1ash1ngPr0gram003"
+
+[registry]
+url = "https://api.apr.dev"
+
+[provider]
+cluster = "devnet"
+wallet   = "~/.config/solana/id.json"
+
+[scripts]
+test = "yarn run ts-mocha -p ./tsconfig.json -t 1000000 tests/**/*.ts"
