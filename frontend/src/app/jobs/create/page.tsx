@@ -1,8 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { useWallet, useConnection } from "@solana/wallet-adapter-react";
-import { PublicKey } from "@solana/web3.js";
+const useWallet = () => ({ publicKey: null });
 import toast from "react-hot-toast";
 import { Plus, Trash2, ArrowRight, Shield, ChevronDown, ChevronUp } from "lucide-react";
 import { calculateFee } from "@/lib/solana";
