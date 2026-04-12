@@ -3,6 +3,10 @@ import { useState } from "react";
 import { Upload } from "lucide-react";
 import toast from "react-hot-toast";
 
+export function generateStaticParams() {
+  return [{ jobId: "550e8400" }, { jobId: "661f9511" }, { jobId: "772g0622" }];
+}
+
 const DELIVERABLES = [
   { id: "1", title: "Responsive homepage", format: "GitHub URL" },
   { id: "2", title: "Wallet connect button", format: "GitHub URL" },
