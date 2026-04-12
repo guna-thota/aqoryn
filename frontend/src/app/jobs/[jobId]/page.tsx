@@ -3,6 +3,10 @@ import { useState } from "react";
 import { Shield, Clock, CheckCircle, AlertTriangle, Zap, ExternalLink } from "lucide-react";
 import toast from "react-hot-toast";
 
+export function generateStaticParams() {
+  return [{ jobId: "550e8400" }, { jobId: "661f9511" }, { jobId: "772g0622" }];
+}
+
 export default function JobDetailPage() {
   const [state, setState] = useState("Delivered");
   const [loading, setLoading] = useState<string | null>(null);
