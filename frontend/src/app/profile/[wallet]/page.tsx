@@ -1,5 +1,9 @@
 import { Award, ExternalLink, Wallet } from "lucide-react";
 
+export function generateStaticParams() {
+  return [{ wallet: "FrEeLaNcErWaLLetAdDrEsS1234567890xY" }];
+}
+
 const NFTS = [
   { mint: "NFTMint1", title: "React landing page", category: "web-development", amount: 500, deliveredInHours: 28, mintedAt: "2024-06-15" },
   { mint: "NFTMint2", title: "Figma design system", category: "design", amount: 800, deliveredInHours: 42, mintedAt: "2024-05-20" },
