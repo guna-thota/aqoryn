@@ -266,7 +266,8 @@ export default function DemoPage() {
               const isActive   = active === step.id;
               const isNext     = i === nextIdx;
               const isExpanded = expanded === step.id;
-              const colors     = isDone ? C[step.color] : C.gray;
+              const safeColorKey = step.color && C[step.color] ? step.color : "gray";
+              const colors = isDone ? C[safeColorKey] : C.gray;
               return (
                 <motion.div key={step.id} initial={{ opacity: 0, x: 10 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: i * 0.04 }}
                   className={`border rounded-xl transition-all ${colors.border} ${colors.bg} ${isNext && !isDone ? "ring-1 ring-white/10" : ""}`}>
