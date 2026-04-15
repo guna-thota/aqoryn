@@ -58,6 +58,7 @@ const C: Record<string, { bg: string; border: string; text: string }> = {
   green:  { bg: "bg-green-500/10",  border: "border-green-500/30",  text: "text-green-400"  },
   pink:   { bg: "bg-pink-500/10",   border: "border-pink-500/30",   text: "text-pink-400"   },
   red:    { bg: "bg-red-500/10",    border: "border-red-500/30",    text: "text-red-400"    },
+  teal:   { bg: "bg-teal-500/10",   border: "border-teal-500/30",   text: "text-teal-400"   },
   gray:   { bg: "bg-white/5",       border: "border-white/10",      text: "text-gray-500"   },
 };
 
@@ -267,7 +268,7 @@ export default function DemoPage() {
               const isNext     = i === nextIdx;
               const isExpanded = expanded === step.id;
               const safeColorKey = step.color && C[step.color] ? step.color : "gray";
-              const colors = isDone ? C[safeColorKey] : C.gray;
+              const colors = isDone ? (C[step.color] ?? C.gray) : C.gray;
               return (
                 <motion.div key={step.id} initial={{ opacity: 0, x: 10 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: i * 0.04 }}
                   className={`border rounded-xl transition-all ${colors.border} ${colors.bg} ${isNext && !isDone ? "ring-1 ring-white/10" : ""}`}>
