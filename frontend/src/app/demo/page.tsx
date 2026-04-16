@@ -135,7 +135,5 @@ return ( <div className="min-h-screen bg-[#0B0F1A] text-white px-6 py-10">
     })}
   </div>
 </div>
-```
-
 );
 }
