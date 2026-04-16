@@ -30,7 +30,7 @@ return ( <div className="relative flex justify-between items-center bg-[#0B0F1A]
     transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
   />
 </div>
-```
+
 
 );
 }
