@@ -7,7 +7,6 @@ const nodes = ["client", "escrow", "ai", "release"];
 
 return ( <div className="relative flex justify-between items-center bg-[#0B0F1A] border border-white/10 rounded-xl px-6 py-6">
 
-```
   {/* line */}
   <div className="absolute top-1/2 left-0 right-0 h-[2px] bg-gradient-to-r from-purple-500 via-green-400 to-purple-500 opacity-30" />
 
