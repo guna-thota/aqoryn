@@ -71,7 +71,7 @@ setTrust(30);
 
 return ( <div className="min-h-screen bg-[#0B0F1A] text-white px-6 py-10">
 
-```
+
   {/* HERO */}
   <div className="text-center mb-12">
     <h1 className="text-6xl font-bold bg-gradient-to-r from-purple-500 to-green-400 bg-clip-text text-transparent">
