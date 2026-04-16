@@ -11,6 +11,9 @@
     @apply bg-[#0a0a0f] text-white;
     font-feature-settings: "rlig" 1, "calt" 1;
   }
+   body {
+  background: #0B0F1A;
+}
 
   /* Solana wallet adapter overrides */
   .wallet-adapter-button {
