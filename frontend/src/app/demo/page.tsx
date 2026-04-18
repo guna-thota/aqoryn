@@ -60,6 +60,50 @@ const COLOR = {
   white:  { hex: "#ffffff", bg: "rgba(255,255,255,.05)", border: "rgba(255,255,255,.12)" },
 };
 
+// ─── Aqoryn Logo Component ────────────────────────────────────────────────────
+function AqorynLogo({ width = 220 }: { width?: number }) {
+  const h = Math.round(width * (80 / 320));
+  return (
+    <svg viewBox="0 0 320 80" xmlns="http://www.w3.org/2000/svg" width={width} height={h} style={{ display: "block" }}>
+      <defs>
+        <linearGradient id="aqIconGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="#9945FF"/>
+          <stop offset="100%" stopColor="#14F195"/>
+        </linearGradient>
+        <linearGradient id="aqTextGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stopColor="#9945FF"/>
+          <stop offset="100%" stopColor="#14F195"/>
+        </linearGradient>
+        <linearGradient id="aqShieldFill" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="#9945FF" stopOpacity="0.15"/>
+          <stop offset="100%" stopColor="#14F195" stopOpacity="0.08"/>
+        </linearGradient>
+      </defs>
+      {/* Shield */}
+      <path d="M10 14 L40 8 L70 14 L70 46 Q70 64 40 72 Q10 64 10 46 Z"
+            fill="url(#aqShieldFill)" stroke="url(#aqIconGrad)" strokeWidth="1.5"/>
+      {/* A letterform */}
+      <path d="M40 20 L28 56 L32 56 L35.5 46 L44.5 46 L48 56 L52 56 Z"
+            fill="url(#aqIconGrad)" opacity="0.9"/>
+      <path d="M37 40 L40 30 L43 40 Z" fill="#080808"/>
+      {/* Lock */}
+      <rect x="36" y="50" width="8" height="6" rx="1.5" fill="url(#aqIconGrad)" opacity="0.85"/>
+      <path d="M37.5 50 Q37.5 46.5 40 46.5 Q42.5 46.5 42.5 50"
+            fill="none" stroke="url(#aqIconGrad)" strokeWidth="1.5" strokeLinecap="round"/>
+      {/* Wordmark */}
+      <text x="82" y="53"
+            fontFamily="'Space Grotesk', 'Segoe UI', sans-serif"
+            fontSize="36" fontWeight="800" letterSpacing="-1"
+            fill="url(#aqTextGrad)">Aqoryn</text>
+      {/* Tagline */}
+      <text x="83" y="68"
+            fontFamily="'Space Grotesk', 'Segoe UI', sans-serif"
+            fontSize="10" fontWeight="600" letterSpacing="2.5"
+            fill="rgba(255,255,255,0.35)">TRUST · ESCROW · SOLANA</text>
+    </svg>
+  );
+}
+
 export default function DemoPage() {
   const [scenario, setScenario]     = useState<ScenarioId>("success");
   const [completed, setCompleted]   = useState<string[]>([]);
@@ -68,22 +112,7 @@ export default function DemoPage() {
   const [expanded, setExpanded]     = useState<string | null>(null);
   const [autoRunning, setAutoRunning] = useState(false);
   const [trust, setTrust]           = useState(30);
-  const [countdown, setCountdown]   = useState({ d: 24, h: 1, m: 1, s: 25 });
 
-  // Live countdown timer
-  useEffect(() => {
-    const t = setInterval(() => {
-      setCountdown(c => {
-        let { d, h, m, s } = c;
-        s--; if(s < 0) { s = 59; m--; }
-        if(m < 0) { m = 59; h--; }
-        if(h < 0) { h = 23; d--; }
-        if(d < 0) d = 0;
-        return { d, h, m, s };
-      });
-    }, 1000);
-    return () => clearInterval(t);
-  }, []);
 
   const steps   = STEPS[scenario];
   const nextIdx = steps.findIndex(s => !completed.includes(s.id));
@@ -118,37 +147,52 @@ export default function DemoPage() {
 
   function changeScenario(s: ScenarioId) { setScenario(s); reset(); }
 
-  const pad = (n: number) => String(n).padStart(2, "0");
+  function downloadLogo() {
+    const svgData = `<svg viewBox="0 0 320 80" xmlns="http://www.w3.org/2000/svg" width="640" height="160">
+      <rect width="640" height="160" fill="#080808"/>
+      <defs>
+        <linearGradient id="dIconGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#9945FF"/>
+          <stop offset="100%" stop-color="#14F195"/>
+        </linearGradient>
+        <linearGradient id="dTextGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="#9945FF"/>
+          <stop offset="100%" stop-color="#14F195"/>
+        </linearGradient>
+        <linearGradient id="dShield" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#9945FF" stop-opacity="0.15"/>
+          <stop offset="100%" stop-color="#14F195" stop-opacity="0.08"/>
+        </linearGradient>
+      </defs>
+      <path d="M10 14 L40 8 L70 14 L70 46 Q70 64 40 72 Q10 64 10 46 Z" fill="url(#dShield)" stroke="url(#dIconGrad)" stroke-width="1.5"/>
+      <path d="M40 20 L28 56 L32 56 L35.5 46 L44.5 46 L48 56 L52 56 Z" fill="url(#dIconGrad)" opacity="0.9"/>
+      <path d="M37 40 L40 30 L43 40 Z" fill="#080808"/>
+      <rect x="36" y="50" width="8" height="6" rx="1.5" fill="url(#dIconGrad)" opacity="0.85"/>
+      <path d="M37.5 50 Q37.5 46.5 40 46.5 Q42.5 46.5 42.5 50" fill="none" stroke="url(#dIconGrad)" stroke-width="1.5" stroke-linecap="round"/>
+      <text x="82" y="53" font-family="Georgia, serif" font-size="36" font-weight="800" letter-spacing="-1" fill="url(#dTextGrad)">Aqoryn</text>
+      <text x="83" y="68" font-family="Georgia, serif" font-size="10" font-weight="600" letter-spacing="2.5" fill="rgba(255,255,255,0.35)">TRUST · ESCROW · SOLANA</text>
+    </svg>`;
+    const blob = new Blob([svgData], { type: "image/svg+xml" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url; a.download = "aqoryn-logo.svg"; a.click();
+    URL.revokeObjectURL(url);
+  }
 
   return (
     <div style={{ background: "#080808", minHeight: "100vh", color: "#fff", fontFamily: "'Space Grotesk', 'Inter', sans-serif" }}>
 
-      {/* ── TOP BANNER (Colosseum-style) ─────────────────────────────────── */}
-      <div style={{ background: "rgba(153,69,255,.15)", borderBottom: "1px solid rgba(153,69,255,.3)", padding: "10px 24px", display: "flex", alignItems: "center", justifyContent: "center", gap: "24px", flexWrap: "wrap" }}>
-        <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-          <span style={{ fontSize: "14px" }}>🏔️</span>
-          <span style={{ fontSize: "12px", fontWeight: 700, letterSpacing: ".08em", color: "#9945FF" }}>FRONTIER LIVE</span>
-          <span style={{ fontSize: "11px", color: "rgba(255,255,255,.5)" }}>—</span>
-          <span style={{ fontSize: "12px", color: "rgba(255,255,255,.7)" }}>Submissions due in</span>
+      {/* ── NAVBAR WITH LOGO ─────────────────────────────────────────────── */}
+      <nav style={{ borderBottom: "1px solid rgba(255,255,255,.07)", padding: "14px 24px", display: "flex", alignItems: "center", justifyContent: "space-between", maxWidth: "1000px", margin: "0 auto" }}>
+        <AqorynLogo width={180} />
+        <div style={{ display: "flex", alignItems: "center", gap: "24px" }}>
+          <a href="#demo" style={{ fontSize: "12px", fontWeight: 600, letterSpacing: ".06em", color: "rgba(255,255,255,.5)", textDecoration: "none" }}>Demo</a>
+          <a href="#how" style={{ fontSize: "12px", fontWeight: 600, letterSpacing: ".06em", color: "rgba(255,255,255,.5)", textDecoration: "none" }}>How it works</a>
+          <a href="https://github.com/guna-thota/aqoryn" target="_blank" rel="noreferrer" style={{ fontSize: "12px", fontWeight: 700, letterSpacing: ".06em", color: "#14F195", textDecoration: "none", display: "flex", alignItems: "center", gap: "6px" }}>
+            <Github style={{ width: "14px", height: "14px" }} /> GitHub
+          </a>
         </div>
-        <div style={{ display: "flex", gap: "6px", alignItems: "center" }}>
-          {[
-            { val: pad(countdown.d), lbl: "DAYS" },
-            { val: pad(countdown.h), lbl: "HRS" },
-            { val: pad(countdown.m), lbl: "MIN" },
-            { val: pad(countdown.s), lbl: "SEC" },
-          ].map((item, i) => (
-            <div key={item.lbl} style={{ display: "flex", alignItems: "center", gap: i < 3 ? "6px" : "0" }}>
-              <div style={{ background: "rgba(153,69,255,.2)", border: "1px solid rgba(153,69,255,.4)", borderRadius: "6px", padding: "4px 10px", textAlign: "center" }}>
-                <div style={{ fontSize: "16px", fontWeight: 800, fontFamily: "monospace", color: "#9945FF" }}>{item.val}</div>
-                <div style={{ fontSize: "9px", letterSpacing: ".1em", color: "rgba(255,255,255,.4)", marginTop: "1px" }}>{item.lbl}</div>
-              </div>
-              {i < 3 && <span style={{ color: "rgba(153,69,255,.5)", fontWeight: 700 }}>:</span>}
-            </div>
-          ))}
-        </div>
-        <div style={{ fontSize: "11px", color: "rgba(255,255,255,.5)" }}>13,688+ builders in the arena</div>
-      </div>
+      </nav>
 
       <div style={{ maxWidth: "1000px", margin: "0 auto", padding: "0 20px" }}>
 
@@ -163,11 +207,15 @@ export default function DemoPage() {
               <span style={{ fontSize: "11px", fontWeight: 700, letterSpacing: ".1em", color: "#14F195" }}>INTERACTIVE DEMO — NO WALLET REQUIRED</span>
             </div>
 
-            <h1 style={{ fontSize: "clamp(56px, 10vw, 96px)", fontWeight: 900, lineHeight: 1, margin: "0 0 12px", letterSpacing: "-.02em" }}>
-              <span style={{ background: "linear-gradient(135deg, #9945FF 0%, #14F195 100%)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>
-                Aqoryn
-              </span>
-            </h1>
+            <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "12px", margin: "0 0 12px" }}>
+              <AqorynLogo width={320} />
+              <button
+                onClick={downloadLogo}
+                style={{ fontSize: "11px", fontWeight: 600, letterSpacing: ".08em", color: "rgba(255,255,255,.3)", background: "transparent", border: "1px solid rgba(255,255,255,.1)", borderRadius: "6px", padding: "5px 14px", cursor: "pointer", display: "flex", alignItems: "center", gap: "6px" }}
+              >
+                ↓ DOWNLOAD LOGO
+              </button>
+            </div>
             <p style={{ fontSize: "clamp(16px, 2.5vw, 22px)", fontWeight: 600, color: "rgba(255,255,255,.85)", margin: "0 0 10px" }}>
               Trust Infrastructure for Freelance Payments
             </p>
