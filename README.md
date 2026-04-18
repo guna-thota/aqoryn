@@ -73,7 +73,7 @@ Push to main → CI runs tests → builds Next.js static export → deploys to G
 2. Go to repo Settings → Pages → Source: **GitHub Actions**
 3. Push to `main` — the workflow handles everything
 
-**Live demo URL:** `https://{your-username}.github.io/aqoryn/demo`
+**Live demo URL:** `https://guna-thota.github.io/aqoryn/demo`
 
 No server required. The demo page is fully client-side with simulated on-chain interactions.
 
